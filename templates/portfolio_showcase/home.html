@@ -6,6 +6,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-    Привет!
+    <div class="container">
+        <div class="row">
+            {% for portfolio in portfolios %}
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <h2 class="title text-center">{{ portfolio.title }}</h2>
+                    <p class="text text-center">{{ portfolio.description }}</p>
+                    <img src="{{ portfolio.image.url }}" width="100%"/>
+                    {% if portfolio.url %}
+                        <a href="{{ portfolio.url }}" target="_blank">Link</a>
+                    {% endif %}
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
