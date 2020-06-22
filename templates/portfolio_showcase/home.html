@@ -7,6 +7,11 @@
 </head>
 <body>
     {% load static %}
+    <header>
+        <h1>Kirill's portfolio</h1>
+        <a href="{% url 'blog:blog_main' %}">Blog</a>
+        <a href="{% static 'portfolio_showcase/resume.pdf' %}" target="_blank">Resume</a>
+    </header>
     <img src="{% static 'portfolio_showcase/photo.jpg' %}" width="40%">
     <br>
     <div class="container">
