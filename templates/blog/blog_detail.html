@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>{{ blog.title }}</h1>
-    <p class="datetime">{{ blog.date|date:'d.m.Y' }}</p>
-    <p>{{ blog.article|safe }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container col-lg-10">
+    <h1 class="panel-title text-primary">{{ blog.title }}</h1><br>
+    <p class="text text-muted">{{ blog.date|date:'d.m.Y' }}</p><br>
+    <p class="text text-primary">{{ blog.article|safe }}</p>
+</div>
+
+{% endblock %}

@@ -1,34 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Мое портфолио</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
-<body>
-    {% load static %}
-    <header>
-        <h1>Kirill's portfolio</h1>
-        <a href="{% url 'blog:blog_main' %}">Blog</a>
-        <a href="{% static 'portfolio_showcase/resume.pdf' %}" target="_blank">Resume</a>
-    </header>
-    <img src="{% static 'portfolio_showcase/photo.jpg' %}" width="40%">
-    <br>
-    <div class="container">
-        <div class="row">
-            {% for portfolio in portfolios %}
+{% extends 'base.html' %}
+{% block content %}
 
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <h2 class="title text-center">{{ portfolio.title }}</h2>
-                    <p class="text text-center">{{ portfolio.description }}</p>
-                    <img src="{{ portfolio.image.url }}" width="100%"/>
-                    {% if portfolio.url %}
-                        <a href="{{ portfolio.url }}" target="_blank">Link</a>
-                    {% endif %}
-                </div>
+{% load static %}
 
-            {% endfor %}
-        </div>
+<p class="text text-center text-capitalize highlight_text h3">
+    Kirill<br>
+    Traveller. Software Engineer. <br>
+    Evangelist Django.
+</p>
+<div class="container col-lg-6 col-md-6">
+    <img src="{% static 'portfolio_showcase/photo.jpg' %}" class="rounded-circle" width="100%">
+</div>
+<h2 class="mt-5">Portfolio</h2>
+<hr>
+<div class="container border-right border-left">
+    <div class="row">
+        {% for portfolio in portfolios %}
+
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                {% if portfolio.url %}
+                    <a href="{{ portfolio.url }}" target="_blank">
+                        <img src="{{ portfolio.image.url }}" width="100%" class="img-fluid mb-2 rounded"/>
+                    </a>
+                {% else %}
+                    <img src="{{ portfolio.image.url }}" width="100%" class="img-fluid mb-2 rounded"/>
+                {% endif %}
+                <h2 class="title">{{ portfolio.title }}</h2>
+                <p class="text">{{ portfolio.description }}</p>
+            </div>
+
+        {% endfor %}
     </div>
-</body>
-</html>
+</div>
+
+{% endblock %}
